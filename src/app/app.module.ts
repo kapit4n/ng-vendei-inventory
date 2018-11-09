@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { InvProductsComponent } from './pages/inv/inv-products/inv-products.component';
-
+import { IConfigService } from './services/inv/i-config.service';
+import { IProductsService } from './services/inv/i-products.service';
 
 const appRoutes: Routes = [
   {
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
     NgbModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ IConfigService, IProductsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
