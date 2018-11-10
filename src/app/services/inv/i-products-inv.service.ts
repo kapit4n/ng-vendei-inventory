@@ -20,7 +20,7 @@ export class IProductsInvService {
   }
 
   getByProductId(id: string): Observable<any> {
-    return this.http.get(`${this.modelUrl}`);
+    return this.http.get(`${this.modelUrl}?filter[where][productId]=${id}`);
   }
 
   save(data: any): Observable<any> {
