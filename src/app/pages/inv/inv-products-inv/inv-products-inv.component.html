@@ -24,6 +24,26 @@
           <label id="stock" i18n>{{invInfo.stock}}</label>
         </div>
       </div>
+      <button class="btn" (click)="addInventory()">+</button>
+      <table class="table">
+        <tr>
+          <th>Cost</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+          <th>Prduct</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let productInv of productInvs">
+          <td>{{productInv.price}}</td>
+          <td>{{productInv.quantity}}</td>
+          <td>{{productInv.totalPrice}}</td>
+          <td>{{productInv.productId}}</td>
+          <td>
+            <button class="btn" (click)="openInventory(productInv.id)">Del</button> &nbsp;
+          </td>
+        </tr>
+      </table>
+
     </div>
   </div>
 </div>
