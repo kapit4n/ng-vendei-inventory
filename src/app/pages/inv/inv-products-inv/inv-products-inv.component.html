@@ -33,13 +33,13 @@
           <th>Prduct</th>
           <th></th>
         </tr>
-        <tr *ngFor="let productInv of productInvs">
-          <td>{{productInv.price}}</td>
-          <td>{{productInv.quantity}}</td>
-          <td>{{productInv.totalPrice}}</td>
-          <td>{{productInv.productId}}</td>
+        <tr *ngFor="let invItem of productInvs">
+          <td>{{invItem.price}}</td>
+          <td>{{invItem.quantity}}</td>
+          <td>{{invItem.totalPrice}}</td>
+          <td>{{invItem.productId}}</td>
           <td>
-            <button class="btn" (click)="openInventory(productInv.id)">Del</button> &nbsp;
+            <button class="btn" (click)="delInvItem(invItem)">Del</button> &nbsp;
           </td>
         </tr>
       </table>

@@ -30,4 +30,10 @@ export class IProductsInvService {
   update(data: any): Observable<any> {
     return this.http.put(`${this.modelUrl}/${data.id}`, data);
   }
+  
+  remove(invItemId: string): Observable<any> {
+    return this.http.delete(`${this.modelUrl}/${invItemId}`);
+  }
+
+
 }

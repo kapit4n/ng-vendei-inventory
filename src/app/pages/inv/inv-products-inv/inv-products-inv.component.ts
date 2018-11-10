@@ -20,14 +20,14 @@ export class InvProductsInvComponent implements OnInit {
     private modalService: NgbModal,
     private productSvc: IProductsService,
     private productInvSvc: IProductsInvService
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get("id");
     if (id != "new") {
-      this.productSvc.getById(id).subscribe(inv => {
-        this.invInfo = inv;
-      });
+      this.loadInvInfo(id);
       this.loadProductInvs(id);
     }
   }
@@ -53,6 +53,13 @@ export class InvProductsInvComponent implements OnInit {
     }
   }
 
+  loadInvInfo(id: string) {
+    this.productSvc.getById(id).subscribe(inv => {
+      this.invInfo = inv;
+      this.invItemInfo.price = this.invInfo.cost;
+    });
+  }
+
   loadProductInvs(id: string) {
     this.productInvSvc.getByProductId(id).subscribe(invs => {
       this.productInvs = invs;
@@ -64,6 +71,21 @@ export class InvProductsInvComponent implements OnInit {
     this.invItemInfo.productId = this.invInfo.id;
 
     this.productInvSvc.save(this.invItemInfo).subscribe(product => {
+      this.loadProductInvs(this.invInfo.id);
+    });
+    this.productSvc.updateInventory(this.invInfo.id, -Number(this.invItemInfo.quantity)).subscribe(res => {
+      console.log(res);
+      this.loadInvInfo(this.invInfo.id);
+    });
+  }
+
+  delInvItem(invItem: any) {
+    this.productSvc.updateInventory(this.invInfo.id, Number(invItem.quantity)).subscribe(res => {
+      console.log(res);
+      this.loadInvInfo(this.invInfo.id);
+    });
+
+    this.productInvSvc.remove(invItem.id).subscribe(product => {
       this.loadProductInvs(this.invInfo.id);
     });
   }

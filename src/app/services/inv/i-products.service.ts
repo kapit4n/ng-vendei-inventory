@@ -41,4 +41,8 @@ export class IProductsService {
   update(data: any): Observable<any> {
     return this.http.put(`${this.modelUrl}/${data.id}`, data);
   }
+
+  updateInventory(productId: string, amount: number): Observable<any> {
+    return this.http.get(`${this.modelUrl}/updateStock?id=${productId}&amount=${amount}`);
+  }
 }
