@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { IProductsService, IProduct } from "../../../services/inv/i-products.service";
 
@@ -10,7 +11,9 @@ import { IProductsService, IProduct } from "../../../services/inv/i-products.ser
 export class InvProductsComponent implements OnInit {
   
   products: IProduct[];
-  constructor(private productsSrv: IProductsService) {
+  constructor(
+    private productsSrv: IProductsService, 
+    private router: Router) {
     this.products = [];
   }
 
@@ -18,7 +21,7 @@ export class InvProductsComponent implements OnInit {
     this.productsSrv.getAll().subscribe(p => (this.products = p));
   }
 
-  openInventory() {
-
+  openInventory(productId: string) {
+    this.router.navigate(["/inv/products/" + productId]);
   }
 }

@@ -9,20 +9,28 @@ import { AppComponent } from './app.component';
 import { InvProductsComponent } from './pages/inv/inv-products/inv-products.component';
 import { IConfigService } from './services/inv/i-config.service';
 import { IProductsService } from './services/inv/i-products.service';
+import { InvProductsInvComponent } from './pages/inv/inv-products-inv/inv-products-inv.component';
 
 const appRoutes: Routes = [
   {
-    path: "products",
+    path: "inv/products",
     component: InvProductsComponent,
     data: { breadcrumb: "Inv Products" }
+  },
+  {
+    path: "inv/products/:id",
+    component: InvProductsInvComponent,
+    data: { breadcrumb: "Inv Products" }
   }
+
 ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    InvProductsComponent
+    InvProductsComponent,
+    InvProductsInvComponent
   ],
   imports: [
     BrowserModule,
