@@ -42,7 +42,13 @@ export class IProductsService {
     return this.http.put(`${this.modelUrl}/${data.id}`, data);
   }
 
-  updateInventory(productId: string, amount: number): Observable<any> {
-    return this.http.get(`${this.modelUrl}/updateStock?id=${productId}&amount=${amount}`);
+  addToInventory(productId: string, amount: number): Observable<any> {
+    return this.http.get(`${this.modelUrl}/addToInventory?id=${productId}&amount=${amount}`);
   }
+  
+  reduceInventory(productId: string, amount: number): Observable<any> {
+    return this.http.get(`${this.modelUrl}/reduceInventory?id=${productId}&amount=${amount}`);
+  }
+
+
 }

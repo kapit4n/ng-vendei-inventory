@@ -73,14 +73,16 @@ export class InvProductsInvComponent implements OnInit {
     this.productInvSvc.save(this.invItemInfo).subscribe(product => {
       this.loadProductInvs(this.invInfo.id);
     });
-    this.productSvc.updateInventory(this.invInfo.id, -Number(this.invItemInfo.quantity)).subscribe(res => {
-      console.log(res);
-      this.loadInvInfo(this.invInfo.id);
-    });
+    this.productSvc
+      .addToInventory(this.invInfo.id, Number(this.invItemInfo.quantity))
+      .subscribe(res => {
+        console.log(res);
+        this.loadInvInfo(this.invInfo.id);
+      });
   }
 
   delInvItem(invItem: any) {
-    this.productSvc.updateInventory(this.invInfo.id, Number(invItem.quantity)).subscribe(res => {
+    this.productSvc.reduceInventory(this.invInfo.id, Number(invItem.quantity)).subscribe(res => {
       console.log(res);
       this.loadInvInfo(this.invInfo.id);
     });
