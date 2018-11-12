@@ -20,7 +20,7 @@ export class IProductsInvService {
   }
 
   getByProductId(id: string): Observable<any> {
-    return this.http.get(`${this.modelUrl}`);
+    return this.http.get(`${this.modelUrl}?filter[where][productId]=${id}`);
   }
 
   save(data: any): Observable<any> {
@@ -30,4 +30,10 @@ export class IProductsInvService {
   update(data: any): Observable<any> {
     return this.http.put(`${this.modelUrl}/${data.id}`, data);
   }
+  
+  remove(invItemId: string): Observable<any> {
+    return this.http.delete(`${this.modelUrl}/${invItemId}`);
+  }
+
+
 }
