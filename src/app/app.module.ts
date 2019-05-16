@@ -22,7 +22,6 @@ const appRoutes: Routes = [
     component: InvProductsInvComponent,
     data: { breadcrumb: "Inv Products" }
   }
-
 ];
 
 @NgModule({
